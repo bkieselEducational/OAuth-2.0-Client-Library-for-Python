@@ -112,7 +112,6 @@ flow = google_auth_oauthlib.flow.Flow(
 
 @auth_routes.route("/oauth_login")
 def oauth_login():
-    print("FLOW CLASS: ", flow)
     authorization_url, state = flow.authorization_url(prompt="select_account consent")
     # print("AUTH URL: ", authorization_url) # I recommend that you print this value out to see what it's generating.
     """
