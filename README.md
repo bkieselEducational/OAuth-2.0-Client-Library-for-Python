@@ -25,7 +25,22 @@ urllib3==1.26.16
 psycopg2==2.9.9
 ```
 
-### Step 3: Choose a file to house the 2 necessary endpoints to implement an OAuth flow. (This example simply uses auth_routes.py from the starter). In this file we must not only write our endpoints code, but must configure our Flow class from the oauth SDK.
+### Step 3: You will need to adjust your User model to allow for NULL passwords.
+
+```python
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+    ...
+    ...
+    hashed_password = db.Column(db.String(255), nullable=True, default=None)
+    ...
+    ...
+```
+
+### Step 4: Choose a file to house the 2 necessary endpoints to implement an OAuth flow. (This example simply uses auth_routes.py from the starter). In this file we must not only write our endpoints code, but must configure our Flow class from the oauth SDK.
 
 ```python
 # Add the necessary imports to the top of your route file!
@@ -187,4 +202,9 @@ def callback():
 
     return redirect(session['referrer']) # This will send the final redirect to our user's browser. As depicted in Line 8 of the flow chart!
 
+```
+
+### Step 5: We will need to install a link in our frontend code to allow our user to initiate the flow.
+```javascript
+  <a href={`${window.origin}/api/auth/oauth_login`}><button>OAUTH</button></a>
 ```
