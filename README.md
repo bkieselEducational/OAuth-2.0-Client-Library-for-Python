@@ -1,5 +1,5 @@
 [<-- BACK](https://github.com/bkieselEducational/OAuth-SDKs)
-# OAuth-2.0-Client-Library-for-Python
+# OAuth 2.0 Client Library for Python
 
 
 ## Incorporating a Google OAuth 2.0 flow in your python application:
