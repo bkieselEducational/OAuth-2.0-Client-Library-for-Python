@@ -192,8 +192,7 @@ def callback():
     if not user_exists:
         user_exists = User(
             username=id_info.get("name"),
-            email=temp_email,
-            password='OAUTH'
+            email=temp_email
         )
 
         db.session.add(user_exists)
